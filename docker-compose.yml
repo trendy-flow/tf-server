@@ -54,4 +54,13 @@ services:
         networks:
             - elk
         depends_on:
+            - mydb
             - elasticsearch
+            
+
+    mydb:
+        image: mongo:4.2.8
+        ports: 
+            - "27017:27017"
+        networks:
+            - elk
