@@ -22,8 +22,8 @@ class NaverAPI:
         data['query'] = '방탄소년단'
         res = requests.get(url, headers=self.headers, params=data).json()
         db = MongoClient(self.db_host, self.db_port)
-        blog_db = db['blogdb']
-        post = blog_db['post']
+        blog_db = db['tfdb']
+        post = blog_db['blog']
         post.insert_many(res['items'])
 
 if __name__ == "__main__":
