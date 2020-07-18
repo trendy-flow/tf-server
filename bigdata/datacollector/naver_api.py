@@ -44,5 +44,5 @@ class NaverAPI:
 
 if __name__ == "__main__":
     n = NaverAPI()
-    n.search_blog('프로그래밍', '20200717')
+    n.search_blog('한이음', '20200101')
     pass
