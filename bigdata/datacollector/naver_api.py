@@ -15,6 +15,7 @@ class NaverAPI:
         self.headers = {'X-Naver-Client-Id' : self.client_id, 'X-Naver-Client-Secret' : self.client_secret, 'Content-Type' : "application/json"}
         pass
 
+    # 블로그 포스트 키워드 데이터 수집 함수
     def search_blog(self, query, last_date):
         url = 'https://openapi.naver.com/v1/search/blog.json'
         data = dict()
@@ -23,7 +24,12 @@ class NaverAPI:
         data['display'] = 100
         data['start'] = 1
         res = self.get_result(url, data, last_date)
+        db = MongoClient(self.db_host, self.db_port)
+        blog_db = db['tfdb']
+        post = blog_db['blog']
+        post.insert_many(res)
 
+    # 최근 블로그 글 부터 마지막으로 검색된 날짜(last_date)까지의 결과를 반환한다.
     def get_result(self, url, data, last_date):
         item_res = list()
         while True:
