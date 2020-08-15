@@ -20,7 +20,6 @@ def collect_blog_data():
 
     # Check empty list
     if res['data']:
-        res['data'] = list({v['link']:v for v in res['data']}.values())
         blogs_collection.insert_many(res['data'])
 
     for item in res['data']:

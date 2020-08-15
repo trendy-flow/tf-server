@@ -11,8 +11,6 @@ class NaverAPI:
         self.secrets = json.loads(open(SECRET_PATH).read())
         self.client_id = self.secrets['client_id']
         self.client_secret = self.secrets['client_secret']
-        self.db_host = self.secrets['db_host']
-        self.db_port = self.secrets['db_port']
         self.headers = {'X-Naver-Client-Id' : self.client_id, 'X-Naver-Client-Secret' : self.client_secret, 'Content-Type' : "application/json"}
         pass
 
@@ -32,9 +30,12 @@ class NaverAPI:
         result = dict()
         result['data'] = list()
         result['total'] = 0
+
+        # 중복 체크
+        duplicate_link = set()
         
-        for _ in range(20):
-            print(data['start'])
+        # 최대 1000개, 1 ~ 1000
+        for _ in range(10):
             res = requests.get(url, headers=self.headers, params=data)
             if res.status_code == 200:
                 res = res.json()
@@ -42,10 +43,13 @@ class NaverAPI:
                     return result
                 else:
                     for item in res['items']:
-                        item['page'] = data['start']
-                        item['keyword'] = data['query']
-                        result['data'].append(item)
-            data['start'] += 1
+                        if item['link'] not in duplicate_link:
+                            item['page'] = data['start']
+                            item['keyword'] = data['query']
+                            result['data'].append(item)
+                            duplicate_link.add(item['link'])
+                            
+            data['start'] += 100
         
         result['total'] = len(result['data'])
         return result
