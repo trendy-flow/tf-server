@@ -4,7 +4,7 @@ from flask_pymongo import PyMongo
 import pandas as pd
 
 app = Flask(__name__)
-app.config['MONGO_URI'] = 'mongodb://localhost:27017/test'
+app.config['MONGO_URI'] = 'mongodb://localhost:27017/tfdb'
 mongo = PyMongo(app)
 
 naver_api = NaverAPI()
