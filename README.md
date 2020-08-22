@@ -1,4 +1,5 @@
 # TrendyFlow
+## Architecture
 ![](img/architecture.png)
-## Data FLow
+## Data Flow
 ![](img/dataflow.png)
