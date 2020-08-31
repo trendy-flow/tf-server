@@ -1,12 +1,13 @@
 from flask import Flask, jsonify, request
 from datacollector.naver_api import NaverAPI
 from flask_pymongo import PyMongo
-import pandas as pd
+from config import config_object_map
+import os
 
 app = Flask(__name__)
-app.config['MONGO_URI'] = 'mongodb://localhost:27017/tfdb'
-mongo = PyMongo(app)
+app.config.from_object(config_object_map[os.getenv('PROJECT_ENV', 'dev')])
 
+mongo = PyMongo(app)
 naver_api = NaverAPI()
 
 @app.route('/', methods=['POST'])

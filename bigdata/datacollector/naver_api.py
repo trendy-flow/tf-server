@@ -2,20 +2,19 @@ import os, json
 import requests
 from pymongo import MongoClient
 from datetime import datetime
+from flask import current_app as app
 
 class NaverAPI:
 
     def __init__(self):
-        DIR_PATH = os.path.dirname(__file__)
-        SECRET_PATH = os.path.join(DIR_PATH, 'secret.json')
-        self.secrets = json.loads(open(SECRET_PATH).read())
-        self.client_id = self.secrets['client_id']
-        self.client_secret = self.secrets['client_secret']
-        self.headers = {'X-Naver-Client-Id' : self.client_id, 'X-Naver-Client-Secret' : self.client_secret, 'Content-Type' : "application/json"}
         pass
 
     # 블로그 포스트 키워드 데이터 수집 함수
     def search_blog(self, query, last_date):
+        self.client_id = app.config['CLIENT_ID']
+        self.client_secret = app.config['CLIENT_SECRET']
+        self.headers = {'X-Naver-Client-Id' : self.client_id, 'X-Naver-Client-Secret' : self.client_secret, 'Content-Type' : "application/json"}
+
         url = 'https://openapi.naver.com/v1/search/blog.json'
         data = dict()
         data['query'] = query
@@ -53,8 +52,3 @@ class NaverAPI:
         
         result['total'] = len(result['data'])
         return result
-
-if __name__ == "__main__":
-    n = NaverAPI()
-    n.search_blog('한이음', '20200101')
-    pass
