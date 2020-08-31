@@ -1,7 +1,8 @@
 # trendy-flow
+config.py
 secret.json
 myenv
-yoogle-env
+
 
 
 # Created by https://www.toptal.com/developers/gitignore/api/visualstudiocode,intellij,python,java
