@@ -27,8 +27,8 @@ class NaverAPI:
     # 최근 블로그 글 부터 마지막으로 검색된 날짜(last_date)까지의 결과를 반환한다.
     def get_result(self, url, data, last_date):
         result = dict()
-        result['data'] = list()
         result['total'] = 0
+        result['data'] = list()
 
         # 중복 체크
         duplicate_link = set()
