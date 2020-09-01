@@ -51,10 +51,10 @@ services:
             - "9600:9600"
         environment:
             LS_JAVA_OPTS: "-Xmx256m -Xms256m"
+            MONGO_URI: ${MONGO_URI}
         networks:
             - elk
         depends_on:
-            - mydb
             - elasticsearch
 
     kibana:
@@ -73,10 +73,3 @@ services:
             - elk
         depends_on:
             - elasticsearch
-            
-    mydb:
-        image: mongo:4.2.8
-        ports: 
-            - "27017:27017"
-        networks:
-            - elk
