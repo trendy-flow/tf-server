@@ -33,6 +33,8 @@ dependencies {
     compile group: 'io.springfox', name: 'springfox-swagger2', version: '2.9.2'
     compile group: 'org.springframework.boot', name: 'spring-boot-starter-data-redis', version: '2.3.3.RELEASE'
 
+    implementation 'org.springframework.boot:spring-boot-starter-data-elasticsearch'
+
     compileOnly 'org.projectlombok:lombok'
     annotationProcessor 'org.projectlombok:lombok'
 
