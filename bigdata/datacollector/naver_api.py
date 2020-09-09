@@ -4,8 +4,8 @@ from pymongo import MongoClient
 from datetime import datetime
 from flask import current_app as app
 
-class NaverAPI:
 
+class NaverAPI:
     def __init__(self):
         pass
 

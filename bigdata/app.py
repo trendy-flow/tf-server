@@ -1,6 +1,7 @@
 from flask import Flask, jsonify, request
 from datacollector.naver_api import NaverAPI
 from flask_pymongo import PyMongo
+
 from config import config_object_map
 import os
 
@@ -27,4 +28,3 @@ def collect_blog_data():
         item['_id'] = str(item['_id'])
 
     return jsonify(res)
-    
