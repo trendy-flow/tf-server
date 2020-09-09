@@ -7,18 +7,15 @@ import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 public class KeywordController {
 
     @Autowired
     private KeywordService keywordService;
-
-    @RequestMapping("/")
-    public String getKeyword() {
-        return "Keyword Information";
-    }
 
     @ApiOperation(value = "키워드 검색", notes = "연관 키워드 보여주기")
     @ApiImplicitParam(name = "query", value = "키워드 이름", paramType = "path", required = true)
