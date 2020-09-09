@@ -1,5 +1,6 @@
 package com.trendyflow.keyword.entity;
 
+import com.trendyflow.keyword.model.ElasticsearchSearchResponse;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -8,6 +9,7 @@ import org.springframework.data.annotation.Id;
 import org.springframework.data.redis.core.RedisHash;
 
 import java.io.Serializable;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 @Getter
@@ -17,16 +19,16 @@ import java.time.LocalDateTime;
 public class Keyword implements Serializable {
     @Id
     private String keyword;
-    private LocalDateTime refreshTime;
-    private String analysisData;
+    private LocalDate lastDate;
+    private ElasticsearchSearchResponse analysisData;
 
     @Builder
-    public Keyword(String keyword, LocalDateTime refreshTime) {
+    public Keyword(String keyword, LocalDate lastDate) {
         this.keyword = keyword;
-        this.refreshTime = refreshTime;
+        this.lastDate = lastDate;
     }
 
-    public void setAnalysisData(String analysisData) {
+    public void setAnalysisData(ElasticsearchSearchResponse analysisData) {
         this.analysisData = analysisData;
     }
 }
