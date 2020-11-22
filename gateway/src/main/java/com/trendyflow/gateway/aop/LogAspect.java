@@ -18,7 +18,7 @@ public class LogAspect {
     public Object execute(ProceedingJoinPoint joinPoint) throws Throwable {
         StopWatch stopWatch = new StopWatch();
         stopWatch.start();
-
+        
         Object proceed = joinPoint.proceed();
 
         stopWatch.stop();
