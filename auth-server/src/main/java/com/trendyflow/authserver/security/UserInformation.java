@@ -9,10 +9,11 @@ import org.springframework.security.core.userdetails.UserDetails;
 
 import lombok.Data;
 
+
 import javax.persistence.Entity;
 
+
 /**
- *
  * spring security user detail 정보
  * @author SUJIN
  *
